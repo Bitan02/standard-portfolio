@@ -2,7 +2,6 @@
 
 import { useRef, useMemo, Suspense } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { OrbitControls } from "@react-three/drei"
 import type * as THREE from "three"
 
 function AnimatedSphere() {
@@ -52,12 +51,7 @@ function Particles() {
   return (
     <points ref={points}>
       <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={particlesPosition.length / 3}
-          array={particlesPosition}
-          itemSize={3}
-        />
+        <bufferAttribute attach="attributes-position" args={[particlesPosition, 3]} />
       </bufferGeometry>
       <pointsMaterial size={0.02} color="#00ffff" sizeAttenuation transparent opacity={0.6} />
     </points>
@@ -74,14 +68,7 @@ function Scene() {
       <AnimatedSphere />
       <Particles />
 
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        autoRotate
-        autoRotateSpeed={0.5}
-        enableDamping
-        dampingFactor={0.05}
-      />
+      {/* Removed OrbitControls to avoid pulling in drei/Bvh which depends on three-mesh-bvh */}
     </>
   )
 }
