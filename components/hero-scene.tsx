@@ -15,12 +15,14 @@ function AnimatedSphere() {
   })
 
   return (
-    <mesh ref={meshRef} scale={2}>
-      <sphereGeometry args={[1, 100, 200]} />
+    <mesh ref={meshRef} scale={2.5} position={[0, 0, -2]}>
+      <sphereGeometry args={[1, 64, 64]} />
       <meshStandardMaterial 
         color="#00ffff" 
-        roughness={0.1} 
-        metalness={0.8}
+        roughness={0.2}
+        metalness={0.1}
+        transparent
+        opacity={0.4}
         emissive="#00ffff"
         emissiveIntensity={0.2}
       />
