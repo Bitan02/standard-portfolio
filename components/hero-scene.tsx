@@ -2,7 +2,7 @@
 
 import { useRef, useMemo, Suspense } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { Sphere, MeshDistortMaterial, OrbitControls } from "@react-three/drei"
+import { OrbitControls } from "@react-three/drei"
 import type * as THREE from "three"
 
 function AnimatedSphere() {
@@ -16,9 +16,16 @@ function AnimatedSphere() {
   })
 
   return (
-    <Sphere ref={meshRef} args={[1, 100, 200]} scale={2}>
-      <MeshDistortMaterial color="#00ffff" distort={0.3} speed={2} roughness={0.1} metalness={0.8} />
-    </Sphere>
+    <mesh ref={meshRef} scale={2}>
+      <sphereGeometry args={[1, 100, 200]} />
+      <meshStandardMaterial 
+        color="#00ffff" 
+        roughness={0.1} 
+        metalness={0.8}
+        emissive="#00ffff"
+        emissiveIntensity={0.2}
+      />
+    </mesh>
   )
 }
 
